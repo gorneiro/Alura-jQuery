@@ -15,14 +15,21 @@ campo.on("input", function(){
 });
 
 var tempoRestante = $("#tempo-digitacao").text();
-campo.on("focus", function(){    
+campo.one("focus", function(){    
     var cronometroID = setInterval(function(){
         tempoRestante --;
         $("#tempo-digitacao").text(tempoRestante);
         if (tempoRestante < 1){
         campo.attr("disabled",true);
-        clearInterval(cronometroID);       
-            
-    }
-    },1000);        
+        clearInterval(cronometroID); 
+        window.alert("GAME OVER");             
+    } 
+    },1000);   
+    
+    $("#btReinicair").on("click", function(){   
+        campo.attr("disabled",false);
+        campo.val("");
+        $("#contador-caracteres").text("0");
+        $("#contador-palavras").text("0");
+    })
 });
